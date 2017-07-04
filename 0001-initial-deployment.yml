@@ -1,0 +1,3 @@
+- hosts: splunk_servers
+  roles:
+    - role: splunk

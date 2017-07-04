@@ -1,0 +1,16 @@
+[splunk_servers]
+cluster-master
+indexer01
+indexer02
+forwarder01
+search01
+dmc
+
+[cluster_master]
+cluster-master
+
+[search_heads]
+search01
+
+[dmcs]
+dmc

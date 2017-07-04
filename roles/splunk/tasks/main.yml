@@ -1,0 +1,32 @@
+- name: set hostname
+  hostname:
+    name: "{{ ansible_hostname }}"
+  become: true
+
+- name: add splunk user
+  user:
+    name: "{{ splunk_os_user }}"
+    state: present
+  become: true
+
+- name: unpack splunk.tar.gz
+  unarchive:
+    src: "{{ splunk_tarball }}"
+    # dest is $SPLUNK_HOME/.., as the tarball contains splunk/ directory
+    dest: "{{ splunk_home }}/.."
+    creates: "{{ splunk_home }}/splunk-6.6.2-4b804538c686-linux-2.6-x86_64-manifest"
+  become: true
+  become_user: "{{ splunk_os_user }}"
+
+- name: start splunk and accept license
+  command: "{{ splunk_home }}/bin/splunk start --accept-license"
+  args:
+    creates: "{{ splunk_home }}/etc/splunk-launch.conf"
+  become: true
+  become_user: "{{ splunk_os_user }}"
+
+- name: enable boot start
+  command: "{{ splunk_home }}/bin/splunk enable boot-start -user {{ splunk_os_user }}"
+  args:
+    creates: /etc/init.d/splunk
+  become: true

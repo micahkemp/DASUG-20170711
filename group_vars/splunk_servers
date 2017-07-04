@@ -1,0 +1,5 @@
+splunk_os_user: splunk
+# splunk_home must end in 'splunk' due to the tarball containing a splunk/
+# directory
+splunk_home: /home/splunk
+splunk_tarball: splunk-6.6.2-4b804538c686-Linux-x86_64.tgz
