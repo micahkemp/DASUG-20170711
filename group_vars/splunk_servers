@@ -1,5 +1,11 @@
-splunk_os_user: splunk
 # splunk_home must end in 'splunk' due to the tarball containing a splunk/
 # directory
 splunk_home: /home/splunk
+splunk_os_user: splunk
+splunk_new_password: splunkpw
+
+# make sure to put this in files/
 splunk_tarball: splunk-6.6.2-4b804538c686-Linux-x86_64.tgz
+
+# because splunklib isn't installed globally
+splunklib_1_6_2_location: /home/ansible/tmp

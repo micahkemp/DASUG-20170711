@@ -1,0 +1,5 @@
+- name: copy splunklib-1.6.2
+  copy:
+    src: splunklib-1.6.2
+    dest: "{{ splunklib_1_6_2_location }}"
+    force: no

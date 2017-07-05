@@ -1,0 +1,3 @@
+dependencies:
+    - role: splunklib-1.6.2
+      location: "{{ splunklib_1_6_2_location }}"

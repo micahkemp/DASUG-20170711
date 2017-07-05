@@ -9,7 +9,7 @@ dmc
 [cluster_master]
 cluster-master
 
-[search_heads]
+[searchheads]
 search01
 
 [dmcs]
