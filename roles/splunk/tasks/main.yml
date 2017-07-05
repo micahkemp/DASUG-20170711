@@ -1,6 +1,6 @@
 - name: set hostname
   hostname:
-    name: "{{ ansible_hostname }}"
+    name: "{{ inventory_hostname }}"
   become: true
 
 - name: add splunk user
