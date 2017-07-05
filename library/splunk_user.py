@@ -56,10 +56,10 @@ def main():
                 user.update(password=module.params['password'])
                 result['password']='changed'
 
-        if 'realname' in module.params:
+        if 'realname' in module.params and module.params['realname']:
             user.update(realname=module.params['realname'])
             result['realname']=module.params['realname']
-        if 'email' in module.params:
+        if 'email' in module.params and module.params['email']:
             user.update(email=module.params['email'])
             result['email']=module.params['email']
     else:
