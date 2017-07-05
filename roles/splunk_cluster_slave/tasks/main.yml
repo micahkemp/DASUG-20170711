@@ -1,0 +1,6 @@
+- name: install cluster_slave_app
+  copy:
+    src: cluster_slave_app
+    dest: "{{ splunk_home }}/etc/apps"
+  become: true
+  become_user: "{{ splunk_os_user }}"
