@@ -1,0 +1,3 @@
+dependencies:
+    - role: splunk_forwarder_inputs_app
+      forwarder_inputs_app_location: "{{ splunk_home }}/etc/master-apps"

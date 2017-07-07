@@ -1,0 +1,6 @@
+- name: install forwarder_inputs_app
+  copy:
+    src: forwarder_inputs_app
+    dest: "{{ forwarder_inputs_app_location }}"
+  become: true
+  become_user: "{{ splunk_os_user }}"
