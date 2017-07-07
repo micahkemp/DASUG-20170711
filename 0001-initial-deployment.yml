@@ -9,3 +9,11 @@
 - hosts: cluster_slaves
   roles:
     - role: splunk_cluster_slave
+
+- hosts: deployment_servers
+  roles:
+    - role: splunk_deployment_server
+
+- hosts: deployment_clients
+  roles:
+    - role: splunk_deployment_client

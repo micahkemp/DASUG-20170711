@@ -1,0 +1,7 @@
+- name: install deployment_client_app
+  copy:
+    # src ends in /, so that the app folder can be renamed (such as z_ on deployment clients)
+    src: deployment_client_app/
+    dest: "{{ deployment_client_app_dest }}"
+  become: true
+  become_user: "{{ splunk_os_user }}"
