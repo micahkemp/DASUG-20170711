@@ -1,14 +1,11 @@
 - hosts: splunk_servers
   roles:
     - role: splunk
-    - role: splunk_restart
 
 - hosts: cluster_master
   roles:
     - role: splunk_cluster_master
-    - role: splunk_restart
 
 - hosts: cluster_slaves
   roles:
     - role: splunk_cluster_slave
-    - role: splunk_restart

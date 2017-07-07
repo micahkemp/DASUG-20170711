@@ -4,3 +4,26 @@
     dest: "{{ splunk_home }}/etc/apps"
   become: true
   become_user: "{{ splunk_os_user }}"
+
+# splunk needs to be made aware of the cluster_slave_app before configuring it
+- name: restart splunk
+  command: "{{ splunk_home }}/bin/splunk restart"
+  become: true
+  become_user: "{{ splunk_os_user }}"
+
+- name: configure master_uri
+  splunk_config_stanza:
+    auth_user: admin
+    auth_password: "{{ splunk_new_password }}"
+    app: cluster_slave_app
+    file: server
+    stanza: clustering
+    values:
+        mode: slave
+        master_uri: "https://{{ cluster_master }}:8089"
+    splunklib: "{{ splunklib_1_6_2_location }}/splunklib-1.6.2"
+
+- name: restart splunk
+  command: "{{ splunk_home }}/bin/splunk restart"
+  become: true
+  become_user: "{{ splunk_os_user }}"

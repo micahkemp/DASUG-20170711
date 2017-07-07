@@ -9,3 +9,6 @@ splunk_tarball: splunk-6.6.2-4b804538c686-Linux-x86_64.tgz
 
 # because splunklib isn't installed globally
 splunklib_1_6_2_location: /home/ansible/tmp
+
+cluster_master: cluster-master
+cluster_secret: DASUGKey
