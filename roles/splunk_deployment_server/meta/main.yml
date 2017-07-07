@@ -2,3 +2,5 @@ dependencies:
     - role: splunk_deployment_client_app
       # deployment_client_app_dest needs to be the app folder, not where the app folder will live
       deployment_client_app_dest: "{{ splunk_home }}/etc/deployment-apps/deployment_client_app"
+    - role: splunk_cluster_searchhead_app
+      cluster_searchhead_app_location: "{{ splunk_home }}/etc/deployment-apps"
