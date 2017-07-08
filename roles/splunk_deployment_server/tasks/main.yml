@@ -17,3 +17,23 @@
     state: present
     restartSplunkd: true
     splunklib: "{{ splunklib_1_6_2_location }}/splunklib-1.6.2"
+
+- name: create Deployment Clients serverclass
+  splunk_serverclass:
+    auth_user: admin
+    auth_password: "{{ splunk_new_password }}"
+    name: Deployment Clients
+    state: present
+    whitelists:
+        - "*"
+    splunklib: "{{ splunklib_1_6_2_location }}/splunklib-1.6.2"
+
+- name: add deployment_client_app to Deployment Clients serverclass
+  splunk_deployment_application:
+    auth_user: admin
+    auth_password: "{{ splunk_new_password }}"
+    name: deployment_client_app
+    serverclass: Deployment Clients
+    state: present
+    restartSplunkd: true
+    splunklib: "{{ splunklib_1_6_2_location }}/splunklib-1.6.2"
