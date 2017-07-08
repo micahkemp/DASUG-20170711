@@ -14,10 +14,13 @@ Deploying Splunk via Ansible
 ### ansible configuration files to configure to be deployment specific
 *   hosts
 *   files/
+
         Place Splunk tarball and Splunk Python SDK splunklib/ here
         splunk-6.6.2-4b804538c686-Linux-x86_64.tgz
         splunklib-1.6.2/splunklib
+
 *   group_vars/splunk_servers
+
         This is where most deployment specific configurations go
         Define splunk installation path, new splunk password, splunk tarball filename, etc
 
