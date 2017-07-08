@@ -9,6 +9,14 @@ dmc
 [cluster_master]
 cluster-master
 
+[deployment_servers]
+cluster-master
+
+[deployment_clients]
+forwarder01
+search01
+dmc
+
 [cluster_slaves]
 indexer01
 indexer02

@@ -1,0 +1,19 @@
+- name: create Cluster Search Head serverclass
+  splunk_serverclass:
+    auth_user: admin
+    auth_password: "{{ splunk_new_password }}"
+    name: Cluster Search Head
+    state: present
+    whitelists:
+        - search*
+    splunklib: "{{ splunklib_1_6_2_location }}/splunklib-1.6.2"
+
+- name: add cluster_searchhead_app to Cluster Search Head serverclass
+  splunk_deployment_application:
+    auth_user: admin
+    auth_password: "{{ splunk_new_password }}"
+    name: cluster_searchhead_app
+    serverclass: Cluster Search Head
+    state: present
+    restartSplunkd: true
+    splunklib: "{{ splunklib_1_6_2_location }}/splunklib-1.6.2"
