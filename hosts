@@ -1,3 +1,5 @@
+# list all hosts that will have splunk (full install or heavy forwarders)
+# hosts in this group will have splunk installed and configured with basic settings (create os user, install splunk, change default pw, etc)
 [splunk_servers]
 cluster-master
 indexer01
@@ -15,6 +17,7 @@ cluster-master
 [deployment_servers]
 cluster-master
 
+# list all hosts that should call back to the deployment server (exclude clustered indexers, cluster master)
 [deployment_clients]
 forwarder01
 search01
@@ -24,6 +27,7 @@ dmc
 indexer01
 indexer02
 
+# list all hosts that should be configured as index cluster searchheads
 [searchheads]
 search01
 dmc
