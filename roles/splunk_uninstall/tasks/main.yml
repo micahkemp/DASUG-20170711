@@ -1,0 +1,26 @@
+- name: stop splunk
+  command: "{{ splunk_home }}/bin/splunk stop"
+  become: true
+
+- name: find splunk files for deletion
+  find:
+    path: "{{ splunk_home }}"
+    file_type: file
+  register: splunk_files
+  become: true
+
+- name: find splunk directories for deletion
+  find:
+    path: "{{ splunk_home }}"
+    file_type: directory
+  register: splunk_directories
+  become: true
+
+- name: remove splunk
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items:
+    - "{{ splunk_files.files }}"
+    - "{{ splunk_directories.files }}"
+  become: true
