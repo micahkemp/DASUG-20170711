@@ -1,0 +1,9 @@
+- name: add search peers to dmc
+  splunk_search_peer:
+    auth_user: admin
+    auth_password: "{{ splunk_new_password }}"
+    name: "{{ item }}"
+    remote_user: admin
+    remote_password: "{{ splunk_new_password }}"
+    splunklib: "{{ splunklib_1_6_2_location }}/splunklib-1.6.2"
+  with_items: "{{ dmc_search_peers }}"

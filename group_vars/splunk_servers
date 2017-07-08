@@ -13,3 +13,8 @@ splunklib_1_6_2_location: /home/ansible/tmp
 cluster_master: cluster-master
 cluster_secret: DASUGKey
 indexer_discovery_secret: DASUGDiscKey
+
+dmc_search_peers:
+    - cluster-master:8089
+    - search01:8089
+    - forwarder01:8089

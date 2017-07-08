@@ -17,3 +17,7 @@
 - hosts: deployment_clients
   roles:
     - role: splunk_deployment_client
+
+- hosts: dmcs
+  roles:
+    - role: splunk_dmc
