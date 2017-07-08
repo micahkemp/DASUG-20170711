@@ -4,3 +4,5 @@ dependencies:
       deployment_client_app_dest: "{{ splunk_home }}/etc/deployment-apps/deployment_client_app"
     - role: splunk_cluster_searchhead_app
       cluster_searchhead_app_location: "{{ splunk_home }}/etc/deployment-apps"
+    - role: splunk_forwarder_outputs_app
+      forwarder_outputs_app_location: "{{ splunk_home }}/etc/deployment-apps"

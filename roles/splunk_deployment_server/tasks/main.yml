@@ -37,3 +37,26 @@
     state: present
     restartSplunkd: true
     splunklib: "{{ splunklib_1_6_2_location }}/splunklib-1.6.2"
+
+- name: create Forwarders serverclass
+  splunk_serverclass:
+    auth_user: admin
+    auth_password: "{{ splunk_new_password }}"
+    name: Forwarders
+    state: present
+    whitelists:
+        - search01
+        - forwarder01
+        - cluster-master
+        - dmc
+    splunklib: "{{ splunklib_1_6_2_location }}/splunklib-1.6.2"
+
+- name: add forwarder_outputs_app to Forwarders serverclass
+  splunk_deployment_application:
+    auth_user: admin
+    auth_password: "{{ splunk_new_password }}"
+    name: forwarder_outputs_app
+    serverclass: Forwarders
+    state: present
+    restartSplunkd: true
+    splunklib: "{{ splunklib_1_6_2_location }}/splunklib-1.6.2"

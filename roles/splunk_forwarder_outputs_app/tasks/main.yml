@@ -1,7 +1,6 @@
-- name: install deployment_client_app
+- name: install forwarder_outputs_app
   copy:
-    # src ends in /, so that the app folder can be renamed (such as z_ on deployment clients)
-    src: deployment_client_app/
-    dest: "{{ deployment_client_app_dest }}"
+    src: forwarder_outputs_app
+    dest: "{{ forwarder_outputs_app_location }}"
   become: true
   become_user: "{{ splunk_os_user }}"

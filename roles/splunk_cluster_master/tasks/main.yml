@@ -23,6 +23,17 @@
         pass4SymmKey: "{{ cluster_secret }}"
     splunklib: "{{ splunklib_1_6_2_location }}/splunklib-1.6.2"
 
+- name: configure indexer discovery pass4SymmKey
+  splunk_config_stanza:
+    auth_user: admin
+    auth_password: "{{ splunk_new_password }}"
+    app: cluster_master_app
+    file: server
+    stanza: indexer_discovery
+    values:
+        pass4SymmKey: "{{ indexer_discovery_secret }}"
+    splunklib: "{{ splunklib_1_6_2_location }}/splunklib-1.6.2"
+
 - name: restart splunk
   command: "{{ splunk_home }}/bin/splunk restart"
   become: true
