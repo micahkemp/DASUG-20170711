@@ -70,10 +70,7 @@
     name: Forwarders
     state: present
     whitelists:
-        - search01
-        - forwarder01
-        - cluster-master
-        - dmc
+        - "*"
     splunklib: "{{ splunklib_1_6_2_location }}/splunklib-1.6.2"
 
 - name: add forwarder_outputs_app to Forwarders serverclass
