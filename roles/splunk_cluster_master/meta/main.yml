@@ -1,3 +1,6 @@
 dependencies:
     - role: splunk_forwarder_inputs_app
       forwarder_inputs_app_location: "{{ splunk_home }}/etc/master-apps"
+#    don't push license slave app for demo, due to lacking a valid master license
+#    - role: splunk_license_slave_app
+#      license_slave_app_location: "{{ splunk_home }}/etc/master-apps"

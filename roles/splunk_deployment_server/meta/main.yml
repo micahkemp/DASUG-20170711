@@ -6,3 +6,5 @@ dependencies:
       cluster_searchhead_app_location: "{{ splunk_home }}/etc/deployment-apps"
     - role: splunk_forwarder_outputs_app
       forwarder_outputs_app_location: "{{ splunk_home }}/etc/deployment-apps"
+    - role: splunk_license_slave_app
+      license_slave_app_location: "{{ splunk_home }}/etc/deployment-apps"

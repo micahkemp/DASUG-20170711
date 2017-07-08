@@ -6,6 +6,9 @@ forwarder01
 search01
 dmc
 
+[license_master]
+cluster-master
+
 [cluster_master]
 cluster-master
 

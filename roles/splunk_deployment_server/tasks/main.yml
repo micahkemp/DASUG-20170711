@@ -1,3 +1,27 @@
+- name: create License Slaves serverclass
+  splunk_serverclass:
+    auth_user: admin
+    auth_password: "{{ splunk_new_password }}"
+    name: License Slaves
+    state: present
+#    don't push license slave app for demo due to lack of valid master license
+#    whitelists:
+#        - search*
+#        - forwarder*
+#        - cluster-master
+#        - dmc
+    splunklib: "{{ splunklib_1_6_2_location }}/splunklib-1.6.2"
+
+- name: add license_slave_app to License Slaves serverclass
+  splunk_deployment_application:
+    auth_user: admin
+    auth_password: "{{ splunk_new_password }}"
+    name: license_slave_app
+    serverclass: License Slaves
+    state: present
+    restartSplunkd: true
+    splunklib: "{{ splunklib_1_6_2_location }}/splunklib-1.6.2"
+
 - name: create Cluster Search Head serverclass
   splunk_serverclass:
     auth_user: admin

@@ -2,6 +2,10 @@
   roles:
     - role: splunk
 
+- hosts: license_master
+  roles:
+    - role: splunk_license_master
+
 - hosts: cluster_master
   roles:
     - role: splunk_cluster_master
