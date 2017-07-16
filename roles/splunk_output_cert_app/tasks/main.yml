@@ -1,0 +1,45 @@
+- name: install output_cert_app
+  copy:
+    src: output_cert_app
+    dest: "{{ splunk_home }}/etc/apps"
+  become: true
+  become_user: "{{ splunk_os_user }}"
+
+- name: create output_cert_app/local
+  file:
+    name: "{{ splunk_home }}/etc/apps/output_cert_app/local"
+    state: directory
+  become: true
+  become_user: "{{ splunk_os_user }}"
+
+- name: copy ca certs
+  copy:
+    src: "{{ item }}"
+    dest: "{{ splunk_home }}/etc/apps/output_cert_app/local"
+  with_items:
+    - ca.cert.pem
+    - intermediate.cert.pem
+  become: true
+  become_user: "{{ splunk_os_user }}"
+
+- name: copy server cert and key
+  copy:
+    src: "{{ inventory_hostname }}/{{ item }}"
+    dest: "{{ splunk_home }}/etc/apps/output_cert_app/local"
+  with_items:
+    - output.cert.pem
+    - output.key.pem
+  become: true
+  become_user: "{{ splunk_os_user }}"
+
+- name: combine ca certs and client cert/key
+  shell: cat output.cert.pem output.key.pem intermediate.cert.pem ca.cert.pem > output.combined.pem
+  args:
+    chdir: "{{ splunk_home }}/etc/apps/output_cert_app/local"
+  become: true
+  become_user: "{{ splunk_os_user }}"
+
+- name: restart splunk
+  command: "{{ splunk_home }}/bin/splunk restart"
+  become: true
+  become_user: "{{ splunk_os_user }}"

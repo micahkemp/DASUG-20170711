@@ -4,6 +4,14 @@
     - role: splunk_mgmt_ca_app
     - role: splunk_mgmt_cert_app
 
+- hosts: ssl_input_servers
+  roles:
+    - role: splunk_input_cert_app
+
+- hosts: ssl_output_servers
+  roles:
+    - role: splunk_output_cert_app
+
 - hosts: license_master
   roles:
     - role: splunk_license_master

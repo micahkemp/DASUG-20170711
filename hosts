@@ -34,3 +34,14 @@ dmc
 
 [dmcs]
 dmc
+
+[ssl_input_servers]
+forwarder01
+indexer01
+indexer02
+
+[ssl_output_servers]
+forwarder01
+search01
+dmc
+cluster-master
