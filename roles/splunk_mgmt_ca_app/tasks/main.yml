@@ -1,0 +1,6 @@
+- name: install mgmt_ca_app
+  copy:
+    src: mgmt_ca_app
+    dest: "{{ splunk_home }}/etc/apps"
+  become: true
+  become_user: "{{ splunk_os_user }}"

@@ -1,0 +1,53 @@
+- name: install mgmt_cert_app
+  copy:
+    src: mgmt_cert_app
+    dest: "{{ splunk_home }}/etc/apps"
+  become: true
+  become_user: "{{ splunk_os_user }}"
+
+- name: create mgmt_cert_app/local
+  file:
+    name: "{{ splunk_home }}/etc/apps/mgmt_cert_app/local"
+    state: directory
+  become: true
+  become_user: "{{ splunk_os_user }}"
+
+- name: copy ca certs
+  copy:
+    src: "{{ item }}"
+    dest: "{{ splunk_home }}/etc/apps/mgmt_cert_app/local"
+  with_items:
+    - ca.cert.pem
+    - intermediate.cert.pem
+  become: true
+  become_user: "{{ splunk_os_user }}"
+
+- name: copy server cert and key
+  copy:
+    src: "{{ inventory_hostname }}/{{ item }}"
+    dest: "{{ splunk_home }}/etc/apps/mgmt_cert_app/local"
+  with_items:
+    - mgmt.cert.pem
+    - mgmt.key.pem
+  become: true
+  become_user: "{{ splunk_os_user }}"
+
+- name: combine ca certs and server cert/key
+  shell: cat mgmt.cert.pem mgmt.key.pem intermediate.cert.pem ca.cert.pem > mgmt.combined.pem
+  args:
+    chdir: "{{ splunk_home }}/etc/apps/mgmt_cert_app/local"
+  become: true
+  become_user: "{{ splunk_os_user }}"
+
+- name: remove sslPassword from system/local
+  replace:
+    dest: "{{ splunk_home }}/etc/system/local/server.conf"
+    regexp: '(^\[sslConfig\]\n[^[]*)^(sslPassword\s*=.*(?:\n|$))'
+    replace: '\1'
+  become: true
+  become_user: "{{ splunk_os_user }}"
+
+- name: restart splunk
+  command: "{{ splunk_home }}/bin/splunk restart"
+  become: true
+  become_user: "{{ splunk_os_user }}"

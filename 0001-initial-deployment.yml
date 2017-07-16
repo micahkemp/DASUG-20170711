@@ -1,6 +1,8 @@
 - hosts: splunk_servers
   roles:
     - role: splunk
+    - role: splunk_mgmt_ca_app
+    - role: splunk_mgmt_cert_app
 
 - hosts: license_master
   roles:
